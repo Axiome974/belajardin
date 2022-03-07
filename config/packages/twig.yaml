@@ -1,5 +1,7 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        aside_menu: '@App\Service\AsideMenuService'
 
 when@test:
     twig:

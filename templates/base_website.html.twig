@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Groovin Bootstrap Template - Index</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+
+<body>
+
+{{ include("webstite/header/header.html.twig") }}
+
+{{  include('webstite/hero/hero.html.twig') }}
+
+<main id="main">
+
+    {{ include('webstite/about/about.html.twig') }}
+
+    {{ include('webstite/count/count.html.twig') }}
+
+    {{ include('webstite/client/client.html.twig') }}
+
+    {{ include('webstite/services/service.html.twig') }}
+
+    {{ include('webstite/whyus/whyus.html.twig') }}
+
+    {{ include('webstite/portfolio/portfolio.html.twig') }}
+
+    {{ include('webstite/team/team.html.twig') }}
+
+    {{ include('webstite/pricing/pricing.html.twig') }}
+
+    {{ include('webstite/faq/faq.html.twig') }}
+
+    {{ include('webstite/contact/contact.html.twig') }}
+
+</main><!-- End #main -->
+
+{{ include('webstite/footer/footer.html.twig') }}
+
+
+</body>
+
+</html>

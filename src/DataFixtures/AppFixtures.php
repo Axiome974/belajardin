@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Diapositive;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,6 +36,12 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
+        $user = new User();
+        $user   ->setEmail("admin@admin.fr")
+                ->setPassword( $this->hasher->hashPassword($user, self::DEFAULT_PASSWORD ))
+                ->setRoles(["ROLE_ADMIN"]);
+        $manager->persist($user);
+
         for( $i = 0; $i < 10; $i++ ) {
             $manager->persist($this->createUser());
         }
@@ -42,10 +49,19 @@ class AppFixtures extends Fixture
             $manager->persist($this->createUser(true));
         }
 
+        for( $i = 1; $i <= 3; $i++ ){
+            $manager->persist($this->createDiapo($i));
+        }
+
         $manager->flush();
     }
 
-    public function createUser( $isAdmin = false ){
+    /**
+     * @param $isAdmin
+     * @return User
+     */
+    public function createUser( $isAdmin = false ): User
+    {
         $user = new User();
         $user->setEmail( $this->faker->email );
         $user->setPassword( $this->hasher->hashPassword($user, self::DEFAULT_PASSWORD));
@@ -53,5 +69,20 @@ class AppFixtures extends Fixture
             $user->setRoles(["ROLE_ADMIN"]);
         }
         return $user;
+    }
+
+
+    /**
+     * @param int $position
+     * @return Diapositive
+     */
+    public function createDiapo(int $position ): Diapositive
+    {
+        $diapo = new Diapositive();
+        $diapo->setDescription( $this->faker->text );
+        $diapo->setTitle( $this->faker->text(50) );
+        $diapo->setPosition($position);
+        $diapo->setPicture('slide-'.$position.'.jpeg');
+        return $diapo;
     }
 }

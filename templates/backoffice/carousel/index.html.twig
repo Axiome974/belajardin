@@ -1,0 +1,51 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <h2>Réglage du carousel d'images</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class=" alert alert-warning">
+                Permet de paramétrer les diapositives de la page d'acceuil du site
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-success">Créer une diapo</button>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        {% for diapo in diapositives %}
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ diapo.title }}</h2>
+                </div>
+                <div class="card-body">
+                    <p>{{ diapo.description }}</p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <img src="{{ asset('build/images/slide/'~diapo.picture ) }}" alt="" width="100%">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger">Supprimer</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

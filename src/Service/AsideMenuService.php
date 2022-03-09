@@ -10,6 +10,7 @@ class AsideMenuService{
 
     const ELEMENTS = [
         "Accueil"   => "backoffice_main",
+        "Carousel"  => "backoffice_main_carousel_index"
     ];
     /**
      * @var UrlGeneratorInterface
@@ -46,7 +47,7 @@ class AsideMenuService{
             }
             $html .= "
                 <li class='nav-item'>
-                    <a href='#' class='nav-link ${activeClass}' aria-current='page'>
+                    <a href='${route}' class='nav-link ${activeClass}' aria-current='page'>
                     <svg class='bi me-2' width='16' height='16'><use xlink:href='${route}'></use></svg>
                      ${label}
                     </a>

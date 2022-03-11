@@ -4,15 +4,18 @@ namespace App\Entity;
 
 use App\Entity\EntityInterface\FileAttachableInterface;
 use App\Entity\EntityInterface\FileAttachableTrait;
-use App\Repository\DiapositiveRepository;
+use App\Repository\AboutSectionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=DiapositiveRepository::class)
+ * @ORM\Entity(repositoryClass=AboutSectionRepository::class)
  */
-class Diapositive implements FileAttachableInterface
+class AboutSection implements FileAttachableInterface
 {
     use FileAttachableTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -31,19 +34,20 @@ class Diapositive implements FileAttachableInterface
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToMany(targetEntity=IconSection::class, cascade={"persist", "remove"})
      */
-    private $position;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isVisible = true;
+    private $iconSections;
 
     /**
      * @ORM\OneToOne(targetEntity=FileUploaded::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $file;
+
+    public function __construct()
+    {
+        $this->iconSections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,34 +78,26 @@ class Diapositive implements FileAttachableInterface
         return $this;
     }
 
-    public function getPicture(): ?string
+    /**
+     * @return Collection|IconSection[]
+     */
+    public function getIconSections(): Collection
     {
-        return $this->getFile();
+        return $this->iconSections;
     }
 
-
-    public function getPosition(): ?int
+    public function addIconSection(IconSection $iconSection): self
     {
-        return $this->position;
-    }
-
-    public function setPosition(int $position): self
-    {
-        $this->position = $position;
+        if (!$this->iconSections->contains($iconSection)) {
+            $this->iconSections[] = $iconSection;
+        }
 
         return $this;
     }
 
-    public function getIsVisible(): ?bool
+    public function removeIconSection(IconSection $iconSection): self
     {
-        return $this->isVisible;
-    }
-
-    public function setIsVisible(bool $isVisible): self
-    {
-        $this->isVisible = $isVisible;
-
-
+        $this->iconSections->removeElement($iconSection);
 
         return $this;
     }
@@ -111,7 +107,7 @@ class Diapositive implements FileAttachableInterface
         return $this->file;
     }
 
-    public function setFile(?FileUploaded $file): self
+    public function setFile(FileUploaded $file): self
     {
         $this->file = $file;
 

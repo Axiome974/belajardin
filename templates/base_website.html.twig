@@ -31,12 +31,12 @@
 {{  include('webstite/hero/hero.html.twig') }}
 
 <main id="main">
-
+    {% if about is not null %}
     {{ include('webstite/about/about.html.twig') }}
+    {% endif %}
+{#    {{ include('webstite/count/count.html.twig') }}#}
 
-    {{ include('webstite/count/count.html.twig') }}
-
-    {{ include('webstite/client/client.html.twig') }}
+{#    {{ include('webstite/client/client.html.twig') }}#}
 
     {{ include('webstite/services/service.html.twig') }}
 

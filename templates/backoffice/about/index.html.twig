@@ -1,0 +1,100 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <h2>Section "A propos"</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class=" alert alert-warning">
+                Permet de modifier la séction "A propos" du site
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        {% if lastAbout is null %}
+            <div class="col-12">
+                <div class="alert alert-danger">Il n'y a pas de section about sur le site</div>
+            </div>
+            <div class="col-sm-12">
+                <a href="{{ path('backoffice_about_add') }}" class="btn btn-success">Créer la section</a>
+            </div>
+        {% else %}
+
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>{{ lastAbout.title }}</h3>
+                        <p>{{ lastAbout.description }}</p>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                {% if lastAbout.file is not null %}
+                                <img src="{{ asset(lastAbout.file) }}" alt="" width="100%">
+                                {% else %}
+                                <div class="alert alert-info">
+                                    Il n'y a aucune image renseignée
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-8">
+                                {% if lastAbout.iconSections is empty %}
+                                    <div class="alert alert-info">
+                                        Vous n'avez encore aucun icon pack
+                                    </div>
+                                {% else %}
+                                    <ul class="list-group">
+
+                                    {% for iconSection in lastAbout.iconSections %}
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        <i class="{{ iconSection.icon }}" style="font-size: 70px"></i>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h4>{{ iconSection.title }}</h4>
+                                                        <p>{{ iconSection.description }}</p>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a href="" class="btn btn-danger">Supprimer</a>
+                                                        <a href="" class="btn btn-warning">Modifier</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+
+                                {% if lastAbout.iconSections is empty or lastAbout.iconSections.count < 4 %}
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <a href="{{ path('backoffice_about_icsection_add', { id : lastAbout.id }) }}" class="btn btn-success">Ajouter</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a href="{{ path('backoffice_about_add') }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('backoffice_about_add') }}" class="btn btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+    </div>
+
+{% endblock %}

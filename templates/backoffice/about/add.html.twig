@@ -1,0 +1,33 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Section "à propos"{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <h2>Gérer la section "à propos"</h2>
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {% if form.file is defined %}
+        {{ form_row(form.file) }}
+    {% else %}
+        <div class="row mb-5">
+            <div class="col-3">
+                <img src="{{ asset(about.file) }}" alt="" width="100%">
+            </div>
+            <div class="col-9">
+                <a class="btn btn-danger" href="{{ path('backoffice_about_remove_picture', {'id' : about.id }) }}">Modifier l'image</a>
+            </div>
+        </div>
+    {% endif %}
+    {{ form_row(form.submit) }}
+
+    {{ form_end(form) }}
+
+
+{% endblock %}

@@ -11,16 +11,13 @@ import { Controller } from '@hotwired/stimulus';
  */
 export default class extends Controller {
     connect() {
-        let  button = document.createElement("button");
-
-        button.classList = "btn btn-primary";
-        button.innerText = "Stimulation!";
-        button.addEventListener("click", this.stimuleMe );
-        this.element.append(button);
+        this.prevElement = document.querySelector("#"+(this.element.id)+"_preview");
+        this.prevElement.classList = this.element.value;
+        this.element.addEventListener('change', this.stimuleMe.bind(this));
     }
 
     stimuleMe(){
-        window.alert("Je suis stimulus!")
+       this.prevElement.classList = this.element.value ;
     }
 
 }

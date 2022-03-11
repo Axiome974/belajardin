@@ -10,7 +10,8 @@ class AsideMenuService{
 
     const ELEMENTS = [
         "Accueil"   => "backoffice_main",
-        "Carousel"  => "backoffice_main_carousel_index"
+        "Carousel"  => "backoffice_carousel_index",
+        "A propos"  => "backoffice_about_index"
     ];
     /**
      * @var UrlGeneratorInterface
@@ -38,7 +39,8 @@ class AsideMenuService{
 
 
         foreach ( self::ELEMENTS as $label => $link ){
-            $activeClass = ( $activeRoute === $link ? "active" : "text-white" );
+
+            $activeClass = (  (str_contains($link, $activeRoute) )? "active" : "text-white" );
 
             if( $link === "" || $link === "#"){
                 $route = "#";

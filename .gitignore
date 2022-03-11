@@ -8,6 +8,7 @@
 /var/
 /vendor/
 /integration/
+/public/uploads/
 
 ###< symfony/framework-bundle ###
 

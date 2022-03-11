@@ -32,15 +32,16 @@
 
 <main id="main">
     {% if about is not null %}
-    {{ include('webstite/about/about.html.twig') }}
+        {{ include('webstite/about/about.html.twig') }}
     {% endif %}
 {#    {{ include('webstite/count/count.html.twig') }}#}
 
 {#    {{ include('webstite/client/client.html.twig') }}#}
+    {% if service is not null %}
+        {{ include('webstite/services/service.html.twig') }}
+    {% endif %}
 
-    {{ include('webstite/services/service.html.twig') }}
-
-    {{ include('webstite/whyus/whyus.html.twig') }}
+{#    {{ include('webstite/whyus/whyus.html.twig') }}#}
 
     {{ include('webstite/portfolio/portfolio.html.twig') }}
 

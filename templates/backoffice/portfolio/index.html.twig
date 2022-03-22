@@ -1,0 +1,69 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <h2>Section "Galerie"</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class=" alert alert-warning">
+                Permet de modifier la galerie de photos
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        {% if lastPortofolio is null %}
+            <div class="col-12">
+                <div class="alert alert-danger">Il n'y a pas de galerie sur le site</div>
+            </div>
+            <div class="col-sm-12">
+                <a href="{{ path('backoffice_portfolio_add') }}" class="btn btn-success">Créer la section</a>
+            </div>
+        {% else %}
+
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>{{ lastPortofolio.title }}</h3>
+                        <p>{{ lastPortofolio.description }}</p>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            {% for picture in lastPortofolio.pictures %}
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img src="{{ asset( picture.file ) }}" alt="" width="100%">
+                                            <p><b>Titre:</b>{{ picture.title }}</p>
+                                            <p><b>Description:</b>{{ picture.subtitle }}</p>
+                                            <p><b>Lien:</b>{{ picture.link }}</p>
+                                            <a href="{{ path('backoffice_portfolio_picture_delete', { id : picture.id }) }}" class="btn btn-danger bx-pull-right"> <i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a href="{{ path('backoffice_portfolio_picture_add') }}" class="btn btn-success">Nouvelle image</a>
+                        <a href="{{ path('backoffice_portfolio_add') }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('backoffice_about_add') }}" class="btn btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+    </div>
+
+{% endblock %}

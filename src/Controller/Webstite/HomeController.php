@@ -4,6 +4,7 @@ namespace App\Controller\Webstite;
 
 use App\Repository\AboutSectionRepository;
 use App\Repository\DiapositiveRepository;
+use App\Repository\PortfolioSectionRepository;
 use App\Repository\ServiceSectionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,13 +23,15 @@ class HomeController extends AbstractController
     public function index(
         DiapositiveRepository $diapositiveRepository,
         AboutSectionRepository $aboutSectionRepository,
-        ServiceSectionRepository $serviceSectionRepository
+        ServiceSectionRepository $serviceSectionRepository,
+        PortfolioSectionRepository $portfolioSectionRepository
     ): Response
     {
         return $this->render('webstite/home/index.html.twig', [
             "diapositives"      => $diapositiveRepository->findAll(),
             "about"             => $aboutSectionRepository->findOneBy([], ["id" => "DESC"]),
-            "service"           => $serviceSectionRepository->findOneBy([], ["id" => "DESC"])
+            "service"           => $serviceSectionRepository->findOneBy([], ["id" => "DESC"]),
+            "portfolio"         => $portfolioSectionRepository->findOneBy([], ["id" => "DESC"])
         ]);
     }
 }

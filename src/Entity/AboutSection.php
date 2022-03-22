@@ -38,12 +38,6 @@ class AboutSection implements FileAttachableInterface
      */
     private $iconSections;
 
-    /**
-     * @ORM\OneToOne(targetEntity=FileUploaded::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $file;
-
     public function __construct()
     {
         $this->iconSections = new ArrayCollection();
@@ -102,15 +96,4 @@ class AboutSection implements FileAttachableInterface
         return $this;
     }
 
-    public function getFile(): ?FileUploaded
-    {
-        return $this->file;
-    }
-
-    public function setFile(FileUploaded $file): self
-    {
-        $this->file = $file;
-
-        return $this;
-    }
 }

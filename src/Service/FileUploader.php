@@ -80,7 +80,7 @@ class FileUploader{
 //        }catch( \Exception $e){
 //            dd("hola");
 //        }
-        $attachable->removeFile(null);
+        $attachable->removeFile();
         $this->manager->remove($file);
         $this->manager->flush();
         return $attachable;

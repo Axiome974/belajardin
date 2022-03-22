@@ -2,18 +2,16 @@
 
 namespace App\Entity;
 
-use App\Entity\EntityInterface\FileAttachableInterface;
-use App\Entity\EntityInterface\FileAttachableTrait;
-use App\Repository\DiapositiveRepository;
+use App\Repository\PortfolioSectionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=DiapositiveRepository::class)
+ * @ORM\Entity(repositoryClass=PortfolioSectionRepository::class)
  */
-class Diapositive implements FileAttachableInterface
+class PortfolioSection
 {
-    use FileAttachableTrait;
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -32,14 +30,14 @@ class Diapositive implements FileAttachableInterface
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToMany(targetEntity=PortfolioPicture::class, cascade={"persist", "remove"})
      */
-    private $position;
+    private $pictures;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isVisible = true;
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -71,34 +69,26 @@ class Diapositive implements FileAttachableInterface
         return $this;
     }
 
-    public function getPicture(): ?string
+    /**
+     * @return Collection|PortfolioPicture[]
+     */
+    public function getPictures(): Collection
     {
-        return $this->getFile();
+        return $this->pictures;
     }
 
-
-    public function getPosition(): ?int
+    public function addPicture(PortfolioPicture $picture): self
     {
-        return $this->position;
-    }
-
-    public function setPosition(int $position): self
-    {
-        $this->position = $position;
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+        }
 
         return $this;
     }
 
-    public function getIsVisible(): ?bool
+    public function removePicture(PortfolioPicture $picture): self
     {
-        return $this->isVisible;
-    }
-
-    public function setIsVisible(bool $isVisible): self
-    {
-        $this->isVisible = $isVisible;
-
-
+        $this->pictures->removeElement($picture);
 
         return $this;
     }

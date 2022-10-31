@@ -3,6 +3,7 @@
 namespace App\Controller\Webstite;
 
 use App\Repository\AboutSectionRepository;
+use App\Repository\ContactRepository;
 use App\Repository\DiapositiveRepository;
 use App\Repository\PortfolioSectionRepository;
 use App\Repository\ServiceSectionRepository;
@@ -24,14 +25,16 @@ class HomeController extends AbstractController
         DiapositiveRepository $diapositiveRepository,
         AboutSectionRepository $aboutSectionRepository,
         ServiceSectionRepository $serviceSectionRepository,
-        PortfolioSectionRepository $portfolioSectionRepository
+        PortfolioSectionRepository $portfolioSectionRepository,
+        ContactRepository $contactRepository
     ): Response
     {
         return $this->render('webstite/home/index.html.twig', [
             "diapositives"      => $diapositiveRepository->findAll(),
             "about"             => $aboutSectionRepository->findOneBy([], ["id" => "DESC"]),
             "service"           => $serviceSectionRepository->findOneBy([], ["id" => "DESC"]),
-            "portfolio"         => $portfolioSectionRepository->findOneBy([], ["id" => "DESC"])
+            "portfolio"         => $portfolioSectionRepository->findOneBy([], ["id" => "DESC"]),
+            "contact"           => $contactRepository->findOneBy([], ["id" => "DESC"])
         ]);
     }
 }

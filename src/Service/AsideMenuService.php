@@ -13,7 +13,8 @@ class AsideMenuService{
         "Carousel"  => "backoffice_carousel_index",
         "A propos"  => "backoffice_about_index",
         "Nos services"  => "backoffice_services_index",
-        "Galerie"  => "backoffice_portfolio_index"
+        "Galerie"  => "backoffice_portfolio_index",
+        "Contact"    => "backoffice_contact_index"
     ];
     /**
      * @var UrlGeneratorInterface

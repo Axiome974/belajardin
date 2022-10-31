@@ -1,0 +1,78 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Nos services{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <h2>Section "Contact"</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class=" alert alert-warning">
+                Permet de modifier la séction "Contact" du site
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        {% if lastContact is null %}
+            <div class="col-12">
+                <div class="alert alert-danger">Il n'y a pas de section "Contact" sur le site</div>
+            </div>
+            <div class="col-sm-12">
+                <a href="{{ path('backoffice_contact_add') }}" class="btn btn-success">Créer la section</a>
+            </div>
+        {% else %}
+
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>{{ lastContact.title }}</h3>
+                        <p>{{ lastContact.description }}</p>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2">
+                                <b>Adresse:</b>
+                            </div>
+                            <div class="col-8">
+                                {{ lastContact.address }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <b>Téléphone:</b>
+                            </div>
+                            <div class="col-8">
+                                {{ lastContact.phone }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <b>Email:</b>
+                            </div>
+                            <div class="col-8">
+                                {{ lastContact.email }}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <a href="{{ path('backoffice_contact_add') }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('backoffice_contact_delete') }}" class="btn btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+    </div>
+
+{% endblock %}

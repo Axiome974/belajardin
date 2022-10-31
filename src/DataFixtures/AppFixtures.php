@@ -35,7 +35,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
         $user = new User();
         $user   ->setEmail("admin@admin.fr")
                 ->setPassword( $this->hasher->hashPassword($user, self::DEFAULT_PASSWORD ))
@@ -49,9 +48,9 @@ class AppFixtures extends Fixture
             $manager->persist($this->createUser(true));
         }
 
-        for( $i = 1; $i <= 3; $i++ ){
-            $manager->persist($this->createDiapo($i));
-        }
+//        for( $i = 1; $i <= 3; $i++ ){
+//            $manager->persist($this->createDiapo($i));
+//        }
 
         $manager->flush();
     }

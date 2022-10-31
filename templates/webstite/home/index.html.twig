@@ -16,11 +16,12 @@
         {{ include('webstite/portfolio/portfolio.html.twig') }}
     {% endif %}
 
-    {{ include('webstite/team/team.html.twig') }}
+{#    {{ include('webstite/team/team.html.twig') }}#}
 
 {#    {{ include('webstite/pricing/pricing.html.twig') }}#}
 
 {#    {{ include('webstite/faq/faq.html.twig') }}#}
-
-    {{ include('webstite/contact/contact.html.twig') }}
+    {% if contact is not null %}
+        {{ include('webstite/contact/contact.html.twig') }}
+    {% endif %}
 {% endblock %}

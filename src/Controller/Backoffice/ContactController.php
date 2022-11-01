@@ -9,6 +9,7 @@ use App\Form\ServiceSectionType;
 use App\Repository\ContactRepository;
 use App\Repository\ServiceSectionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 #[Route('/backoffice/contact', name: 'backoffice_contact_')]
+#[IsGranted('ROLE_ADMIN')]
 class ContactController extends AbstractController
 {
     #[Route('/', name: 'index')]

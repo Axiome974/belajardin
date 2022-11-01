@@ -48,6 +48,30 @@ class ContactType extends AbstractType
                     new NotNull()
                 ]
             ])
+            ->add('facebook', EmailType::class, [
+                'label' => 'Facebook',
+                'constraints' => [
+                    new NotNull()
+                ]
+            ])
+            ->add('instagram', EmailType::class, [
+                'label' => 'Instagram',
+                'constraints' => [
+                    new NotNull()
+                ]
+            ])
+            ->add('linkedin', EmailType::class, [
+                'label' => 'Linkedin',
+                'constraints' => [
+                    new NotNull()
+                ]
+            ])
+            ->add('twitter', EmailType::class, [
+                'label' => 'Twitter',
+                'constraints' => [
+                    new NotNull()
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'label'     => 'Enregistrer'
             ])

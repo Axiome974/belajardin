@@ -16,15 +16,19 @@ import './styles/app.css';
 // Modules
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
-import 'glightbox/dist/js/glightbox.min.js';
-import 'isotope-layout/js/isotope.js';
-import 'swiper';
+import Glightbox from "glightbox/src/js/glightbox";
+import Isotope from 'isotope-layout/js/isotope.js';
+import Swiper from 'swiper';
+
+global.GLightbox = Glightbox;
+global.Swiper = Swiper;
+global.Isotope = Isotope;
+
 
 // Js files
-import './template_assets/js/php-email-form/validate.js';
-import './template_assets/js/purecounter/purecounter.js';
-import './template_assets/js/main.js';
-
+require( './template_assets/js/php-email-form/validate.js');
+require ('./template_assets/js/purecounter/purecounter.js');
+require('./template_assets/js/main.js');
 
 // start the Stimulus application
 import './bootstrap';

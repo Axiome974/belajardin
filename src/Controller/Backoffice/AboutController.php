@@ -9,6 +9,7 @@ use App\Form\IconSectionType;
 use App\Repository\AboutSectionRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/backoffice/about", name="backoffice_about_")
+ * @IsGranted("ROLE_ADMIN")
  */
 class AboutController extends AbstractController
 {

@@ -49,7 +49,7 @@ class VisitorMessageType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer le massage'
+                'label' => 'Envoyer le message'
             ])
         ;
     }

@@ -108,4 +108,20 @@ class ServiceController extends AbstractController
             "id"    => $aboutSection->getId()
         ]);
     }
+
+
+    /**
+     * @Route("/delete", name="delete")
+     */
+    public function delete(
+        Request $request,
+        EntityManagerInterface $manager,
+        ServiceSectionRepository $serviceSectionRepository
+    ): RedirectResponse
+    {
+        $section = $serviceSectionRepository->findOneBy([], ["id" => "DESC"]) ?? new ServiceSection();
+        $manager->remove($section);
+        $manager->flush();
+        return $this->redirectToRoute('backoffice_services_index');
+    }
 }

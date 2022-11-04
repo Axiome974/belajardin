@@ -108,4 +108,19 @@ class PortfolioController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute("backoffice_portfolio_index");
     }
+
+    /**
+     * @Route("/portfolio/delete", name="delete")
+     */
+    public function deletePortfolio(
+        EntityManagerInterface $manager,
+        FileUploader $fileUploader,
+        PortfolioSectionRepository $portfolioSectionRepository
+    ): Response
+    {
+        $portfolio = $portfolioSectionRepository->findOneBy([]);
+        $manager->remove($portfolio);
+        $manager->flush();
+        return $this->redirectToRoute("backoffice_portfolio_index");
+    }
 }

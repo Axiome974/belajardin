@@ -46,4 +46,45 @@ class IconSectionController extends AbstractController
     }
 
 
+    /**
+     * @Route("/{id}/update", name="update")
+     */
+    public function update(
+        Request $request,
+        IconSection $iconPack,
+        EntityManagerInterface $manager
+    ): Response
+    {
+        $form = $this->createForm(IconSectionType::class, $iconPack);
+
+        $form->handleRequest($request);
+
+        if( $form->isSubmitted() && $form->isValid() ){
+            $manager->persist($iconPack);
+            $manager->flush();
+            return $this->redirectToRoute('backoffice_services_index');
+        }
+
+        return $this->render('backoffice/icon_section/add.html.twig', [
+            "form"      => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/delete", name="delete")
+     */
+    public function delete(
+        Request $request,
+        IconSection $iconSection,
+        EntityManagerInterface $manager
+    ): RedirectResponse
+    {
+        $manager->remove($iconSection);
+        $manager->flush();
+        return $this->redirectToRoute('backoffice_services_index');
+    }
+
+
+
+
 }

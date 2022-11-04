@@ -20,7 +20,15 @@ class IconSectionType extends AbstractType
                 "label"     => "Icone",
                 "choices"   => [
                     "Carton"    => "bx bx-box",
-                    "Papier"    => "bx bx-receipt"
+                    "Papier"    => "bx bx-receipt",
+                    "Soleil"    => "bx bx-sun",
+                    "Nuage"    => "bx bx-cloud",
+                    "Nuage-pluie"    => "bx bx-cloud-rain",
+                    "Feuille"     => "bx bx-leaf",
+                    "Cone travaux"     => "bx bx-traffic-cone",
+                    "Horloge"     => "bx bx-time-five",
+                    "Calendrier"     => "bx bx-calendar",
+                    "Goutte"     => "bx bx-droplet",
                 ],
                 "attr"      => [
                     "data-controller" => "update-icon",

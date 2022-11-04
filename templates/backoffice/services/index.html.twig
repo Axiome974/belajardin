@@ -58,8 +58,8 @@
                                                         <p>{{ iconSection.description }}</p>
                                                     </div>
                                                     <div class="col-3">
-                                                        <a href="" class="btn btn-danger">Supprimer</a>
-                                                        <a href="" class="btn btn-warning">Modifier</a>
+                                                        <a href="{{ path('backoffice_iconsection_delete', { id : iconSection.id }) }}" class="btn btn-danger">Supprimer</a>
+                                                        <a href="{{ path('backoffice_iconsection_update', { id : iconSection.id }) }}" class="btn btn-warning">Modifier</a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -80,7 +80,7 @@
 
                     <div class="card-footer">
                         <a href="{{ path('backoffice_services_add') }}" class="btn btn-warning">Modifier</a>
-                        <a href="{{ path('backoffice_about_add') }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('backoffice_services_delete') }}" class="btn btn-danger">Supprimer</a>
                     </div>
                 </div>
             </div>

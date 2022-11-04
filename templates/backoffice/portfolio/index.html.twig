@@ -47,7 +47,7 @@
                                             <p><b>Titre:</b>{{ picture.title }}</p>
                                             <p><b>Description:</b>{{ picture.subtitle }}</p>
                                             <p><b>Lien:</b>{{ picture.link }}</p>
-                                            <a href="{{ path('backoffice_portfolio_picture_delete', { id : picture.id }) }}" class="btn btn-danger bx-pull-right"> <i class="fas fa-trash"></i></a>
+                                            <a href="{{ path('backoffice_portfolio_picture_delete', { id : picture.id }) }}" class="btn btn-danger bx-pull-right"> Supprimer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                     <div class="card-footer">
                         <a href="{{ path('backoffice_portfolio_picture_add') }}" class="btn btn-success">Nouvelle image</a>
                         <a href="{{ path('backoffice_portfolio_add') }}" class="btn btn-warning">Modifier</a>
-                        <a href="{{ path('backoffice_about_add') }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('backoffice_portfolio_delete') }}" class="btn btn-danger">Supprimer</a>
                     </div>
                 </div>
             </div>
